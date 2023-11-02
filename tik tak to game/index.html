@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic-tac-toe game</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ 
+
+ <div class="toper">
+    <div class="topdiv">
+        <div class="mainbox">
+            <div id="box1" class="boxses"></div>
+            <div id="box2" class="boxses"></div>
+            <div id="box3" class="boxses"></div>
+            <div id="box4" class="boxses"></div>
+            <div id="box5" class="boxses"></div>
+            <div id="box6" class="boxses"></div>
+            <div id="box7" class="boxses"></div>
+            <div id="box8" class="boxses"></div>
+            <div id="box9" class="boxses"></div>
+        </div>
+    
+        <div id="result-section">
+            <h1>TIC-TAC-TOE</h1>
+            <p>The sadness of losing and the joy of winning are not good for mental 
+                <br>
+                health, so play responsibly.</p>
+    
+           <div class="wrper">
+            <h2>result:</h2>
+            <div class="shoresult"></div>
+    
+            <button id="btn">Restart</button>
+         </div>
+         
+        </div>
+      
+       </div>
+        
+ </div>
+
+<!-- javascript. -->
+
+    <script>
+
+const position1 = document.getElementById('box1');
+const position2 = document.getElementById('box2');
+const position3 = document.getElementById('box3');
+const position4 = document.getElementById('box4');
+const position5 = document.getElementById('box5');
+const position6 = document.getElementById('box6');
+const position7 = document.getElementById('box7');
+const position8 = document.getElementById('box8');
+const position9 = document.getElementById('box9');
+let boxses = document.getElementsByClassName("boxses")
+let wenar = document.querySelector(".shoresult")
+let turn =  "x"
+ 
+
+if (turn === "x") {
+    document.body.style.fontSize = "100px";
+    document.body.style.color = "rgb(255, 77, 0)";
+}
+
+
+  
+
+
+let isGameOver = false;
+ 
+
+
+const chengContent = ()=>{
+    return turn === "x" ? "0": "x"
+    turn.style.fontSize = '100px'
+}
+
+function gameOver(){
+    position1.innerText = ""
+    position2.innerText = ""
+    position3.innerText = ""
+    position4.innerText = ""
+    position5.innerText = ""
+    position6.innerText = ""
+    position7.innerText = ""
+    position8.innerText = ""
+    position9.innerText = ""
+
+}
+
+document.getElementById("btn").addEventListener("click", function(){
+    gameOver()
+    wenar.innerText = ""
+})
+
+const chackForWine = ()=>{
+
+    if(position1.innerText !== "" && position1.innerText === position2.innerText && position2.innerText === position3.innerText){
+        wenar.innerText =  position3.innerText + ":" + "won"
+
+        let audio = new Audio("winingsound.wav");
+    audio.play();
+
+        setTimeout(function() {
+    alert("The game is over. Please press the Restart button.");
+}, 2000);
+        
+        
+    }
+
+     if(position4.innerText !== "" && position4.innerText === position5.innerText && position5.innerText === position6.innerText){
+        wenar.innerText =  position6.innerText + ":" + "won"
+        let audio = new Audio("winingsound.wav");
+    audio.play();
+        setTimeout(function() {
+    alert("The game is over. Please press the Restart button.");
+}, 2000);
+        
+    }
+
+     if(position7.innerText !== "" && position7.innerText === position8.innerText && position8.innerText === position9.innerText){
+        wenar.innerText =  position9.innerText + ":" + "won"
+        let audio = new Audio("winingsound.wav");
+    audio.play();
+               setTimeout(function() {
+    alert("The game is over. Please press the Restart button.");
+}, 2000);
+        
+    }
+
+    if(position1.innerText !== "" && position1.innerText === position4.innerText && position4.innerText === position7.innerText){
+        wenar.innerText = position7.innerText + "  :  " + "won"
+        let audio = new Audio("winingsound.wav");
+    audio.play();
+        setTimeout(function() {
+    alert("The game is over. Please press the Restart button.");
+}, 2000);
+        
+    }
+
+    if(position2.innerText !== "" && position2.innerText === position5.innerText && position5.innerText === position8.innerText){
+        wenar.innerText = position8.innerText + "  :  " + "won"
+        let audio = new Audio("winingsound.wav");
+    audio.play();
+        setTimeout(function() {
+    alert("The game is over. Please press the Restart button.");
+}, 2000);
+        
+    }
+
+    if(position3.innerText !== "" && position3.innerText === position6.innerText && position6.innerText === position9.innerText){
+        wenar.innerText = position9.innerText + "  :  " + "won"
+        let audio = new Audio("winingsound.wav");
+    audio.play();
+        setTimeout(function() {
+    alert("The game is over. Please press the Restart button.");
+}, 2000);
+        
+    }
+
+    if(position3.innerText !== "" && position3.innerText === position5.innerText && position5.innerText === position7.innerText){
+        wenar.innerText = position7.innerText + "  :  " + "won"
+        let audio = new Audio("winingsound.wav");
+    audio.play();
+        setTimeout(function() {
+    alert("The game is over. Please press the Restart button.");
+}, 2000);
+        
+       
+    }
+
+    if(position1.innerText !== "" && position1.innerText === position5.innerText && position5.innerText === position9.innerText){
+        wenar.innerText = position9.innerText + "  :  " + "won"
+        let audio = new Audio("winingsound.wav");
+    audio.play();
+        setTimeout(function() {
+    alert("The game is over. Please press the Restart button.");
+}, 2000);
+        
+       
+    }
+
+}
+   
+
+
+// main game logic
+Array.from(boxses).forEach(element => {
+    element.addEventListener("click", function(){
+        if(element.innerText === ""){
+            element.innerText = turn;
+            turn = chengContent();
+            chackForWine();
+            let audio = new Audio("click.wav")
+            audio.play()
+        }
+             
+    })
+});
+        
+    </script>
+
+
+
+</body>
+</html>
